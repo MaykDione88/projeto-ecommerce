@@ -1,0 +1,11 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #111111;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+}
