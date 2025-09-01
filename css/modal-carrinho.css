@@ -28,6 +28,11 @@
     margin-bottom: 2rem;
 }
 
+.modal header h2 {
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+}
+
 .modal .container .fechar {
     background-image: url(../assets/images/icone_fechar.svg);
     width: 24px;
