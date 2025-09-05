@@ -63,7 +63,9 @@ botoesAdicionarAoCarrinho.forEach(botao => {
         }
 
         salvarProdutosNoCarrinho(carrinho);
-    atualizarContadorCarrinho();
+        atualizarContadorCarrinho();
+        renderizarTabelaDoCarrinho();
+
 
     });
 
@@ -81,10 +83,10 @@ function obterProdutosDoCarrinho() {
 //passo 4 - atualizar o contador do carrinho de compras
 
 function atualizarContadorCarrinho() {
-    const carrinho = obterProdutosDoCarrinho();
+    const produtos = obterProdutosDoCarrinho();
     let total = 0;
 
-    carrinho.forEach(produto => {
+    produtos.forEach(produto => {
         total += produto.quantidade;
     });
 
@@ -93,3 +95,36 @@ function atualizarContadorCarrinho() {
     document.getElementById('contador-carrinho').textContent = total;
 
 }
+
+//passo 5 - renderizar a tabela do carrinho de compras
+
+function renderizarTabelaDoCarrinho() {
+    const produtos = obterProdutosDoCarrinho();
+    const corpoTabela = document.querySelector("#modal-1-content table tbody");
+
+    corpoTabela.innerHTML = "";//limpar o corpo da tabela antes de renderizar
+
+    produtos.forEach(produto => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td class="td-produto">
+                        <img 
+                        src="${produto.imagem}" 
+                        alt="${produto.nome}"
+                        />
+                         </td>
+                         <td>${produto.nome}</td>
+                                <td class="td-preco-unitario">R$ ${produto.preco.toFixed(2).replace(".", ",")}</td>
+                                <td class="td-quantidade">
+                                    <input type="number" value="${produto.quantidade}" min="1">
+                                </td>
+                                <td class="td-preco-total">R$${produto.preco.toFixed(2).replace(".", ",")} </td>
+                                <td>
+                                    <button class="btn-remover" data-id="${produto.id}">Remover</button>
+                                </td>
+                            </td>`;
+        corpoTabela.appendChild(tr);
+    });
+
+}
+
+renderizarTabelaDoCarrinho();
