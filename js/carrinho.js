@@ -159,7 +159,7 @@ function removerProdutoDoCarrinho(id) {
 function atualizarValorTotalDoCarrinho() {
     const produtos = obterProdutosDoCarrinho();
     const total = produtos.reduce((soma, produto) => soma + produto.preco * produto.quantidade, 0);
-    document.querySelector('#total-carrinho').textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
+    document.querySelector('#total-carrinho').textContent = `Total: R$ ${total.toFixed(2).replace(".", ",")}`;
 }
 
 
